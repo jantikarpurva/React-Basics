@@ -1,0 +1,234 @@
+Difference between Angular and React
+--------------------------------------
+
+Angular = framework, and React JS - Library
+Angular contains everything about application development.
+Angular is a complete solution to application development.
+React JS doesnt have - http (server related operations), routing.
+In react js we can use any/best HTTP library
+HTTP library -> FetchAPI, AJAX, Axios.
+Routing -> React-router-dom ( 3rd party module ) 
+
+Framework - 
+Library - 
+
+Create react project 
+npx create-react-app <name>
+
+npm cache clean --force
+
+npx - Runner
+npm - package manager
+
+npm create-react-app <name> -- node + create-react-app + projects
+
+npx create-react-app <name> -- node + projects
+
+npm start
+npm run build
+npm test 
+npm run eject
+
+React Component = .css, .js (js + html) 
+
+App.css + App.js -> <App/> -> this is a custom tag of App component.
+
+localhost:3000 ( server ) - default page will be index.html ( in public folder )
+
+Components creation 
+--------------------
+
+1) Class based component : class Name {}
+2) Functional component : function Name(){} ( Coming from 16.8 version )
+
+Static / Dynamic
+-----------------
+
+Static data can be displayed via both the above mentioned methods
+Dynamic data
+
+Lets create a component MessageCard - it contains MessageCard.css + MessageCard.js
+
+HTML 
+-------
+<div class = "card"> </div>
+<img src="img.jpeg" >
+<br>
+<input type="text">
+
+JSX 
+-----
+<div className = "card"> </div>
+<img src="img.jpeg"/>
+<br/>
+<input type="text"/>
+
+Rules to write react components - IT SHOULD START WITH CAPITAL LETTER.
+
+Component is a reusable thing, you can use it 'n' number of times.
+
+How to apply css to react 
+--------------------------
+1) inline 
+2) internal 
+3) external
+
+text-align : center --> css
+textAlign = "center" --> js
+
+In react component in render() while returning there should be only one parent tag.
+
+<React.Fragment> </React.Fragment>
+
+Bootstrap 
+----------
+fontawesome.css
+bootstrap.css
+mdb.css
+styles.css
+
+Props
+------
+
+If you want to send data from one component to another we use props.
+
+how is data sent using props ?
+Using your own attributes.
+
+<ParentCard>
+
+	<ChildCard name="Purva"/> // You are sending name from parent card to child card. So how will ChildCard read name. It can read by this.props.name;
+</ParentCard>
+
+props = {
+	name : "Purva",
+	age : 45
+};
+
+for class component - this.props.name
+for functional component - props.name
+
+How to comment - CTRL + SHIFT + /
+
+State 
+-------
+
+The component which can maintain its own data is called STATE.
+
+Anything that has to be changed dynamically, it should be in STATE.
+
+HTML - onclick()
+JSX - onClick
+
+if we write - 
+onClick = {this.greet}
+onClick = {this.greet()}
+
+Forms Binding 
+---------------
+SMS
+Form
+
+event.preventDefault() // This is used to make sure the page is not refreshed.
+event.target.name
+event.target.value
+
+Conditionals and looping
+--------------------------
+{ write condition here }
+
+( Condition ) ? <React.Fragment></React.Fragment> : null
+
+looping 
+
+this.state.user.map( user => {
+	return(
+	
+	
+		// First JSX element should have 'key' which is unique
+		// write jsx here
+	
+	)
+});
+
+Componenet Interaction
+------------------------
+
+Parent to child - 
+you send data from parent to child using props.
+Child to parent - 
+to send data from child to parent, you need some event that sends data from child to parent.
+Example - Button. When you click the button the data is sent from child to parent.
+But you also need some function in parent that receives the sent data.
+in parent you have a function which is responsible to receive data
+in child you have a function which is responsilbe to send data
+
+Props Drilling Problem
+------------------------
+
+When data is present in top most component but you want to display data in lowest component, so you basically keep on passing data in props, till data reaches lowest component.
+This problem is known as props drilling problem.
+you have to pass data through all intermediate component to display in lowest level. you need to catch data in intermediate component even though you dont want to display data there.
+App ( from app ) -> A -> B -> C ( to c )
+
+Context API
+------------
+
+Sending data directly to any level of component without having to pass data through each and every intermediate level.
+Solution to props drilling problem.
+
+Provider -> Provides data
+Consumer -> Consumes data
+
+let UserContext = React.createContext({});
+export default ContextName;
+
+<ContextName.Provider value={}>
+	// Write the component to which you wanna provide data
+</ContextName.Provider>
+
+<Context.Consumer>
+	{
+		(value) => {
+			return (JSX);
+		}
+	}
+</Context.Consumer?
+
+NOTE - we have data in lowest and we want to send data to highest component, its not possible to send directly. 
+You have to send data one by one.
+
+Life Cycle functions
+----------------------
+
+Life cycle = Component Creation - to - Component Deletion
+
+Component is available in DOM
+Placed in DOM - Component Creation = componentDidMount()
+-> When component is fully loaded in DOM
+Removed from DOM - Component Deletion = compoenetWillUnMount()
+-> When component is fully unloaded from DOM
+
+you receive data in from server side in componentDidMount()
+
+HTTP
+------
+
+How to get data from server.
+React JS doesnt have - http (server related operations), routing.
+In react js we can use any/best HTTP library
+HTTP library -> FetchAPI, AJAX, Axios.
+Routing -> React-router-dom ( 3rd party module ) 
+
+Axios - npm install axios.
+
+JSON placeholder.com -> https://jsonplaceholder.typicode.com/users
+
+write logic to fetch data from server in componentDidMount and not in constructor.
+we dont fetch data in constructor because constructor doesnt wait for component to load, constructor gets executed before only.
+
+Axios.get().then().catch()
+
+in get() -> write the url from where you want to fetch data.
+then() -> is the succesful response from the server.
+catch() -> is the error message caught from the server.
